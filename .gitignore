@@ -1,0 +1,10 @@
+__pycache__/
+.ipynb_checkpoints/
+artifacts/
+text-flappy-bird-gym/
+
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.synctex.gz

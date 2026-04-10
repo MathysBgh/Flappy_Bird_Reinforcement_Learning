@@ -1,0 +1,2 @@
+from text_flappy_bird_gym.envs.text_flappy_bird_env_simple import TextFlappyBirdEnvSimple
+from text_flappy_bird_gym.envs.text_flappy_bird_env_screen import TextFlappyBirdEnvScreen
