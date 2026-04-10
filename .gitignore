@@ -2,6 +2,7 @@ __pycache__/
 .ipynb_checkpoints/
 artifacts/
 text-flappy-bird-gym/
+2526_RL_Assignment_CS3A.pdf
 
 report/*.aux
 report/*.log
