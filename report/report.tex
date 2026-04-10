@@ -12,6 +12,7 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{caption}
+\usepackage{float}
 
 \input{metrics.tex}
 
@@ -28,6 +29,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.35em}
 \pagestyle{empty}
+\raggedbottom
 \makeatletter
 
 \begin{document}
@@ -76,7 +78,7 @@ Figure~\ref{fig:training} highlights the main behavioural difference between the
 
 This difference is expected. Monte Carlo updates only after complete episodes, so learning is delayed and more irregular. Sarsa($\lambda$), in contrast, updates online and uses eligibility traces, which propagate useful credit information faster through each episode. In practice, this produces smoother value estimates and a more stable rise in training performance.
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\columnwidth]{figures/training_comparison_column.png}
 \caption{Training score evolution and greedy evaluation performance. Both agents solve the environment, while Sarsa($\lambda$) reaches stronger late-training performance and a cleaner convergence profile.}
@@ -103,9 +105,9 @@ The same algorithmic ideas could be transferred to the original Flappy Bird envi
 \section*{Generalization to a New Configuration}
 To test transfer, the trained policies were evaluated on a new TFB configuration with height$=\TransferHeight$, width$=\TransferWidth$, and pipe-gap$=\TransferGap$. As expected, both agents lose performance because they were optimized for a specific geometry. Nevertheless, Sarsa($\lambda$) transfers better: its average greedy score on the new configuration is \textbf{\SarsaTransferScore{}} against \textbf{\MCTransferScore{}} for Monte Carlo, while both agents remain perfect on the training configuration (\MCTrainScore{} and \SarsaTrainScore{} respectively). This suggests that Sarsa($\lambda$) learns a policy that is not only strong in-distribution, but also more robust under moderate environment changes.
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
-\includegraphics[width=\columnwidth]{figures/parameter_transfer_column.png}
+\includegraphics[width=0.94\columnwidth]{figures/parameter_transfer_column.png}
 \caption{Hyperparameter sensitivity and transfer behaviour. Monte Carlo is sensitive to residual exploration, while Sarsa($\lambda$) is sensitive to the eligibility-trace parameter and transfers better to the new level configuration.}
 \label{fig:sweeps}
 \end{figure}
@@ -113,10 +115,16 @@ To test transfer, the trained policies were evaluated on a new TFB configuration
 \section*{Conclusion}
 Both implementations successfully solve \texttt{TextFlappyBird-v0}. Monte Carlo control eventually reaches optimal behaviour, but Sarsa($\lambda$) learns faster, produces smoother value estimates, and generalizes better to the tested level change. Overall, the compact TFB environment is well suited to tabular reinforcement learning, while the screen-based version would likely require a stronger representation model to be competitive.
 
+\vspace{0.15em}
+{\color{Muted}\hrule height 0.4pt}
+\vspace{0.35em}
+\begingroup
+\footnotesize
 \begin{thebibliography}{9}
 \bibitem{sb} Sutton, R.S., Barto, A.G.: \emph{Reinforcement Learning: An Introduction}. 2nd edn. MIT Press (2018)
 \bibitem{tfb} Christodoulidis, S.: Text Flappy Bird Gym. \url{https://gitlab-research.centralesupelec.fr/stergios.christodoulidis/text-flappy-bird-gym}
 \bibitem{fbgym} Talendar: Flappy Bird Gym. \url{https://github.com/Talendar/flappy-bird-gym}
 \end{thebibliography}
+\endgroup
 
 \end{document}
