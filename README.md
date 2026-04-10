@@ -30,21 +30,3 @@ py -3 -m pip install -r requirements.txt
 Then open and run:
 
 - `flappy_bird.ipynb`
-
-To rebuild the report assets:
-
-```bash
-py -3 build_submission_assets.py
-```
-
-To rebuild the PDF report:
-
-```bash
-pdflatex -interaction=nonstopmode -halt-on-error report/report.tex
-```
-
-## Code link for the report
-
-Repository URL:
-
-`https://github.com/MathysBgh/Flappy_Bird_Reinforcement_Learning`
